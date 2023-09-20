@@ -11,8 +11,8 @@ spec:
     namespace: default
   project: default
   source:
-    chart: grafana
-    repoURL: https://github.com/grafana/helm-charts
+    chart: grafana/grafana
+    repoURL: https://grafana.github.io/helm-charts
     targetRevision: 6.59.4
   syncPolicy:
     automated:
