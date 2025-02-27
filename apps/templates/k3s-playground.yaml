@@ -1,0 +1,22 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: k3s-playground
+  namespace: argo-cd
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
+spec:
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: default
+  project: default
+  source:
+    repoURL: https://github.com/AlexanderWiechert/k3s-playground
+    targetRevision: HEAD
+    path: nextcloud
+    kustomize:
+      version: v4.5.7  # Optional: Bestimmte Version von Kustomize setzen
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
