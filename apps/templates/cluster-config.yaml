@@ -1,0 +1,19 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: cluster-config
+  namespace: argo-cd
+spec:
+  project: default
+  source:
+    repoURL: https://github.com/AlexanderWiechert/k3s-playground
+    targetRevision: HEAD
+    path: kustomize/base
+    kustomize: {}
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: kube-system
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
