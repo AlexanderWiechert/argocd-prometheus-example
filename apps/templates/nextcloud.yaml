@@ -1,0 +1,19 @@
+kind: Application
+metadata:
+  name: nextcloud
+  namespace: default
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
+spec:
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: default
+  project: default
+  source:
+    path: nextcloud
+    repoURL: https://github.com/AlexanderWiechert/k3s-playground.yaml
+    targetRevision: HEAD
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true%
